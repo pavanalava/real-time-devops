@@ -1,4 +1,1 @@
-Day 1:
-- Used Bash terminal
-- Learned basic Linux commands
-- Created project structurels
+My Devops Journey Day1
