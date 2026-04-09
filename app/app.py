@@ -13,6 +13,13 @@ def data():
         "system": "running"
     }
 
+@app.route("/data/<devops>")
+def data_name(devops):
+    return {
+        "message": f"Hello {devops}",
+        "status": "running"
+    }
+
 if __name__ == "__main__":
     app.run(debug=True)
 
