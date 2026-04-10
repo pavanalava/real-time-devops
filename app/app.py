@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Industrial Monitoring App Running"
+    return "Industrial Monitoring App Running<br>CI/CD Pipeline is Active"
 
 @app.route("/data")
 def data():
