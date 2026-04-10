@@ -24,7 +24,8 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             script: |
-              cd ~/real-time-devops/app
-              git pull origin main
-              fuser -k 5000/tcp || true
-              setsid nohup python3 app.py > app.log 2>&1 < /dev/null &
+              cd ~/real-time-devops
+              git fetch origin
+              git reset --hard origin/main
+              sudo systemctl restart flaskapp
+              sudo systemctl status flaskapp --no-pager
