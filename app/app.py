@@ -20,6 +20,15 @@ def data_name(devops):
         "status": "running"
     }
 
+from datetime import datetime
+
+@app.route("/health")
+def health():
+    return {
+        "status": "healthy",
+        "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    }
+
 if __name__ == "__main__":
     app.run(debug=True)
 
