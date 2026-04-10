@@ -27,5 +27,4 @@ jobs:
               cd ~/real-time-devops/app
               git pull origin main
               fuser -k 5000/tcp || true
-              nohup python3 app.py > app.log 2>&1 < /dev/null &
-              disown || true
+              setsid nohup python3 app.py > app.log 2>&1 < /dev/null &
