@@ -1,6 +1,9 @@
 name: Deploy to EC2
 
 on:
+  pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
@@ -20,7 +23,9 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd ~/real-time-devops/app
-            git pull origin main
-            pkill -f app.py || true
-            nohup python3 app.py > app.log 2>&1 &
+            script: |
+              cd ~/real-time-devops/app
+              git pull origin main
+              fuser -k 5000/tcp || true
+              nohup python3 app.py > app.log 2>&1 < /dev/null &
+              disown || true
