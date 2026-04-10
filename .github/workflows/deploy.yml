@@ -22,5 +22,8 @@ jobs:
           script: |
             cd ~/real-time-devops/app
             git pull origin main
-            pkill -f app.py || true
+            PID=$(pgrep -f "python3 app.py" || true)
+            if [ -n "$PID" ]; then
+              kill -9 $PID
+            fi
             nohup python3 app.py > app.log 2>&1 &
